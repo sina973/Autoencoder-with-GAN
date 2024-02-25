@@ -1,24 +1,24 @@
 # Autoencoder-with-GAN
-Design and build a GAN, Combine Recurrent Autoencoder with GAN
+Design and build a GAN, Combine Recurrent Autoencoder with Generative Adversarial Network
 
 # Introduction
 In this project, I propose a novel model combining Recursive Autoencoder with GAN. I created two neural networks, the encoder and decoder of the autoencoder part, and one additional network that works as a binary classifier for the discriminator. In this way, the Autoencoder and the discriminator compete with each other in the game theory manner in order to improve the efficiency and accuracy of reconstructing input in the autoencoder. Furthermore, the output of the Autoencoder will be entered into the system as an input of the Autoencoder. My goal here is to fool the discriminator by a 50 percent chance for all recursive steps and update both the Autoencoder and discriminator’s parameters with respect to the competition between them.
 
 # Methodology
 ## Autoencoder:  
-Autoencoders first compress the data into a latent representation with lower dimensions. Then, it tries to reproduce the input data. Suppose we have a set of input data points ${x^(1),x^(2),…,x^(m)}$ each with many dimensions. The goal of the autoencoder is to map the input to some latent representation ${z^(1),z^(2),…,z^(m)}$ which have lower dimensionality than x, and also x can be reconstructed from it (we name the reconstructed data $\bar{x}$.) In order to talk about mapping more systematically, I propose z and x ̅ in the following way:
-$z^(i)= W_e  x^(i)+ b_e$
-$ \bar{x^(I) = W_d  z^(i)+ b_d $
-Where W_e and b_e are related to the encoder part, and W_d and b_d are for the decoder part of the autoencoder.
+Autoencoders first compress the data into a latent representation with lower dimensions. Then, it tries to reproduce the input data. Suppose we have a set of input data points ${x^1,x^2,…,x^m}$ each with many dimensions. The goal of the autoencoder is to map the input to some latent representation ${z^1,z^2,…,z^m}$ which has lower dimensionality than x, and also x can be reconstructed from it (we name the reconstructed data $\bar{x}$.) In order to talk about mapping more systematically, I propose z and $\bar{x}$ in the following way:
+$z^i= W_e  x^i+ b_e$
+$\bar{x}^i = W_d  z^i+ b_d$
+Where $W_e$ and $b_e$ are related to the encoder part, and $W_d$ and $b_d$ are for the decoder part of the autoencoder.
 
-Our goal here is to reconstruct x ̅^( (i)) in order to approximate x^( (i)). So the loss function is the sum of squared difference between x ̅^( (i)) and x^( (i)). 
-L(W_e,b_e,W_d,b_d )= ∑_(i=1)^m▒( x ̅^( (i) )- x^( (i) ) )^2 
+We aim to reconstruct $\bar{x}^i$ to approximate $x^i$. So, the loss function is the sum of the squared difference between $\bar{x}^i$ and $x^i$. 
+$L(W_e,b_e,W_d,b_d) = ∑_(i=1)^m▒( x ̅^( (i) )- x^( (i) ) )^2$
 〖^〗= ∑_(i=1)^m▒( W_d  z^((i))+ b_d- x^( (i) ) )^2 
 〖^〗= ∑_(i=1)^m▒( W_d  (W_e  x^((i))+ b_e)+ b_d- x^( (i) ) )^2 
 Therefore, minimizing this difference is the goal here, which can be done by stochastic gradient descent.
 
 3.2 The Discriminator: 
-Generative Adversarial Network is made of two neural networks – the generator and the discriminator - which compete with each other in sense of game theory (Goodfellow et al., 2020). Presume training examples x has an unknown distribution p_input (x). The goal of the generator network is to learn p_model (x) in a way that it would be similar to p_input (x). as much as possible. The output of the generator is defined by the generator function G(u;W(G)) where u is the input of the generator and W(G) is a set of learnable parameters of the generator. In this project the generator is actually the decoder part of the autoencoder.
+A Generative Adversarial Network is made of two neural networks – the generator and the discriminator - which compete with each other in the sense of game theory (Goodfellow et al., 2020). Presume training examples x has an unknown distribution p_input (x). The goal of the generator network is to learn p_model (x) in a way that is as similar to p_input (x) as much as possible. The output of the generator is defined by the generator function G(u;W(G)), where u is the input of the generator and W(G) is a set of learnable parameters of the generator. In this project, the generator is the autoencoder's decoder part.
 The other part is the discriminator. The discriminator takes some examples x as input and decide whether x is real (drawn from the training samples) or fake (output of the generator). The discriminator function is D(x;W(D)) where W(D)) ) is a set of learnable parameters of the discriminator.
 
 Training of GANs is consist of evaluate both parameters of the discriminator which maximize its accuracy, and also parameters of the generator that can maximally fool the discriminator (Creswell et al., 2018).
