@@ -4,22 +4,12 @@ Design and build a GAN, Combine Recurrent Autoencoder with GAN
 # Introduction
 In this project, I propose a novel model combining Recursive Autoencoder with GAN. I created two neural networks, the encoder and decoder of the autoencoder part, and one additional network that works as a binary classifier for the discriminator. In this way, the Autoencoder and the discriminator compete with each other in the game theory manner in order to improve the efficiency and accuracy of reconstructing input in the autoencoder. Furthermore, the output of the Autoencoder will be entered into the system as an input of the Autoencoder. My goal here is to fool the discriminator by a 50 percent chance for all recursive steps and update both the Autoencoder and discriminator’s parameters with respect to the competition between them.
 
-# Background
-## Autoencoders: 
-
-Autoencoder was first developed in late 1980s for wide range of usage like information processing and pattern recognition (Bourlard & Kamp, 1988). The early purpose of autoencoders was data analysis in term of nonlinear dimensionality reduction. It was introduced as an extension of principal component analysis (PCA) (Kramer, 1991). Autoencoders learning method is unsupervised, so it learns automatically from unlabeled data. It can help us understand underlying structure of the data by extracting relations within the input data (Lopez Pinaya et al., 2020).  An autoencoder is consisting of an encoder and a decoder (Figure 1), so that each correlate with their own parameters. The job of the encoder is mapping the input into internal latent representation of the data with lower dimensionality. Then, decoder is used to produce an output with the exact dimensionality of the input. The goal is to make the output similar to the input data as much as possible. 
-
-2.2 GANs: 
-Generative Adversarial Network is a type of Neural network which is designed for generative modeling problem. The goal of this network is to learn the probability distribution which data points in the input (training data points) can be generated from it (Goodfellow et al., 2020). GAN is consist of a pair of networks, a generator and a discriminator, which competes with each other. It uses both supervised and unsupervised learning techniques (Creswell et al., 2018). A common analogy for visualizing GAN is to presume one network as an art forger and the other one as an expert (Figure 2). On one hand, The forger which is the generator, G, trying to create perfect forgeries to fool the expert. On the other hand, The expert which is the discriminator, D, receives both real arts and forgeries  and tries to identify the fake one (Creswell et al., 2018). Unlike other learning techniques which rely on optimizing, GANs use game theory to design loss function. For training this network, the generator and discriminator compete with each other (Tang et al., 2020). GAN produce promising data samples which can be used for tasks such as semantic image editing (Zhu et al., 2016), data augmentation (Bousmalis et al., 2017). It can also be used for tasks such as classification (Radford et al., 2016).
-
-Despite tremendous amount of time spent on the last two subjects, there are few articles focusing on combining these two. Here, I chose to cover the rarely touched upon topics. It will be explained with more elaboration in the following.
-
-	Methodology
-3.1 Autoencoder:  
-As discussed before, autoencoders first compress the data into a latent representation with lower dimensions. Then, it tries to reproduce the input data. Suppose we have a set of input data points {x^((1)),x^((2)),…,x^((m)) } each with many dimensions. The goal of autoencoder is to map the input to some latent representation {z^((1)),z^((2)),…,z^((m)) } which have lower dimensionality than x , and also x can be reconstructed from it (we name the reconstructed data x ̅). In order to talk about mapping more systematically, I propose z and x ̅ in the following way:
-z^((i))= W_e  x^((i))+ b_e
-x ̅^((i))= W_d  z^((i))+ b_d
-Where W_e and b_e are related to the encoder part, and W_d and b_d  are for decoder part of autoencoder.
+# Methodology
+## Autoencoder:  
+Autoencoders first compress the data into a latent representation with lower dimensions. Then, it tries to reproduce the input data. Suppose we have a set of input data points {x^((1)),x^((2)),…,x^((m)) } each with many dimensions. The goal of the autoencoder is to map the input to some latent representation {z^((1)),z^((2)),…,z^((m)) } which have lower dimensionality than x, and also x can be reconstructed from it (we name the reconstructed data x ̅). In order to talk about mapping more systematically, I propose z and x ̅ in the following way:
+$ z^(i)= W_e  x^(i)+ b_e $
+$ \bar{x^(I) = W_d  z^(i)+ b_d $
+Where W_e and b_e are related to the encoder part, and W_d and b_d are for the decoder part of the autoencoder.
 
 Our goal here is to reconstruct x ̅^( (i)) in order to approximate x^( (i)). So the loss function is the sum of squared difference between x ̅^( (i)) and x^( (i)). 
 L(W_e,b_e,W_d,b_d )= ∑_(i=1)^m▒( x ̅^( (i) )- x^( (i) ) )^2 
