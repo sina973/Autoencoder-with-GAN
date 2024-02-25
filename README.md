@@ -17,15 +17,15 @@ $L(W_e,b_e,W_d,b_d) = ∑ (\bar{x}^i - x^i)^2 = ∑ ( W_d z^i + b_d- x^i)^2 = �
 Therefore, minimizing this difference is the goal here, which can be done by stochastic gradient descent.
 
 ## The Discriminator: 
-A Generative Adversarial Network is made of two neural networks – the generator and the discriminator - which compete with each other in the sense of game theory (Goodfellow et al., 2020). Presume training examples x has an unknown distribution p_input (x). The goal of the generator network is to learn p_model (x) in a way that is as similar to p_input (x) as much as possible. The output of the generator is defined by the generator function G(u;W(G)), where u is the input of the generator and W(G) is a set of learnable parameters of the generator. In this project, the generator is the autoencoder's decoder part.
-The other part is the discriminator. The discriminator takes some examples x as input and decide whether x is real (drawn from the training samples) or fake (output of the generator). The discriminator function is D(x;W(D)) where W(D)) ) is a set of learnable parameters of the discriminator.
+A Generative Adversarial Network is made of two neural networks – the generator and the discriminator - which compete with each other in the sense of game theory (Goodfellow et al., 2020). Presume training examples $x$ has an unknown distribution $p_input(x)$. The goal of the generator network is to learn $p_model(x)$ in a way that is as similar to $p_input(x)$ as much as possible. The output of the generator is defined by the generator function $G(u;W(G))$, where u is the input of the generator and $W(G)$ is a set of learnable parameters of the generator. In this project, the generator is the autoencoder's decoder part. <br />
+The other part is the discriminator. The discriminator takes some examples $x$ as input and decides whether $x$ is real (drawn from the training samples) or fake (output of the generator). The discriminator function is $D(x;W(D))$ where $W(D)$ is a set of learnable parameters of the discriminator. <br />
 
-Training of GANs is consist of evaluate both parameters of the discriminator which maximize its accuracy, and also parameters of the generator that can maximally fool the discriminator (Creswell et al., 2018).
-The cost of training is defined by a cost function V(G,D) that depends on both the generator and the discriminator. Here, I decided to use minimax GAN that is based on minimax game. This type of training solves the bellow equation,
-max┬D⁡min┬G⁡〖V(G,D)〗 
-, where
-V(G,D)=E_(P_input (x) )  log⁡〖D(x)+ 〗 E_(P_model (x) )  log⁡〖(1-D(x)) 〗.
-Here E_(P_input (x) ) is the expectation over the input distribution, E_(P_model (x) ) is the expectation over the autoencoder’s output distribution, and log⁡〖D(x)  〗is the log likelihood of the discriminator. In the training process, the parameters of one network is frozen while the other network’s parameters are being updated (Creswell et al., 2018).
+Training of GANs consists of evaluating both parameters of the discriminator, which maximizes its accuracy, and also the parameters of the generator that can maximally fool the discriminator (Creswell et al., 2018). <br />
+The cost of training is defined by a cost function $V(G,D)$ that depends on both the generator and the discriminator. Here, I decided to use minimax GAN, which is based on the minimax game. This type of training solves the bellow equation: <br />
+$max_D ⁡min_G⁡ [V(G,D)]$ <br />
+where $V(G,D) = E_{P_input (x)} log⁡ D(x) + E_{P_model (x)} log⁡(1-D(x))$. <br />
+
+Here $E_{P_input (x)}$ is the expectation over the input distribution, E_(P_model (x) ) is the expectation over the autoencoder’s output distribution, and log⁡〖D(x)  〗is the log-likelihood of the discriminator. In the training process, the parameters of one network is frozen while the other network’s parameters are being updated (Creswell et al., 2018).
 
 Goodfellow et al.4 showed that for a generator with probability distribution p_model there is a unique optimal discriminator, D^* (x)=  (p_input (x) )/(p_input (x)+p_model (x) ). They also showed that when p_input (x) is equal to p_model (x), the generator is optimal, which then lead them to the optimal discriminator with D^* (x)= 0.5. In other words, the generator is optimal when the discriminator is totally confused between the real samples or the fake ones, which in fact make the discriminator take a 50-50 chance decision.
 
