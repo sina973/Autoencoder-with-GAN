@@ -100,4 +100,9 @@ Kramer, M. A. (1991). Nonlinear principal component analysis using autoassociati
 Lopez Pinaya, W. H., Vieira, S., Garcia-Dias, R., & Mechelli, A. (2020). Autoencoders. Machine Learning, 193–208. https://doi.org/10.1016/b978-0-12-815739-8.00011-0 
 Susik, R. (2021). Recurrent autoencoder with sequence-aware encoding. Computational Science – ICCS 2021, 47–57. https://doi.org/10.1007/978-3-030-77964-1_4 
 Tang, T.-W., Kuo, W.-H., Lan, J.-H., Ding, C.-F., Hsu, H., & Young, H.-T. (2020). Anomaly detection neural network with dual auto-encoders gan and its industrial inspection applications. Sensors, 20(12), 3336. https://doi.org/10.3390/s20123336 
-Zhu, J.-Y., Krähenbühl, P., Shechtman, E., & Efros, A. A. (2016). Generative visual manipulation on the natural image manifold. Computer Vision – ECCV 2016, 597–613. https://doi.org/10.1007/978-3-319-46454-1_36 
+Zhu, J.-Y., Krähenbühl, P., Shechtman, E., & Efros, A. A. (2016). Generative visual manipulation on the natural image manifold. Computer Vision – ECCV 2016, 597–613. https://doi.org/10.1007/978-3-319-46454-1_36   
+Trokhymovych, M., Kosovan, O. (2023). GeoDD: End-to-End Spatial Data 
+De-duplication System. In: Silhavy, R., Silhavy, P., Prokopova, Z. (eds) 
+Data Science and Algorithms in Systems. CoMeSySo 2022. Lecture Notes in 
+Networks and Systems, vol 597. Springer, Cham. 
+https://doi.org/10.1007/978-3-031-21438-7_60
