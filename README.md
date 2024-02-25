@@ -42,7 +42,7 @@ In this project, I combined autoencoder with GAN in the way that we have the nor
 
 As an extension to Autoencoders researchers introduced “Recurrent auto encoder” (Susik, 2021). In the Recurrent Autoencoders the generated output of the decoder will be the input of the autoencoder, and the final output of the autoencoder after k recursive process will be x'^k. In regard of this change, the loss function will be changed to $L(W_e,b_e,W_d,b_d) =(x'^k - x^2)$ instead of $(x'- x)^2$. The goal here is to minimize the loss function by updating encoder and decoder’s parameters. <br />
 
-In this project I proposed a novel model with combining Recurrent Autoencoder with GAN in the way they both compete with each other in order to improve the efficiency and accuracy of reconstructing input in autoencoders. In this matter, all the outputs from decoder (from first output, 〖x'〗^((1)) to the last recursive output 〖x'〗^((k))) will be the input of the discriminator to decide whether it is fake or real (Figure 3). My goal here is to fool the discriminator by 50 percent chance for all recursive steps and update both Autoencoder and discriminator’s parameters in respect of a competition between Recursive Autoencoder and the discriminator. <br />
+In this project I proposed a novel model with combining Recurrent Autoencoder with GAN in the way they both compete with each other in order to improve the efficiency and accuracy of reconstructing input in autoencoders. In this matter, all the outputs from decoder (from first output, $x'^1$ to the last recursive output $x'^k$ will be the input of the discriminator to decide whether it is fake or real (Figure 3). My goal here is to fool the discriminator by 50 percent chance for all recursive steps and update both Autoencoder and discriminator’s parameters in respect of a competition between Recursive Autoencoder and the discriminator. <br />
 
 # Implementation
 
@@ -90,19 +90,13 @@ In this project, I combined autoencoder with GAN in the way that we have the nor
 I used Google Colab to run my codes. One of the important limitation was limited and low amount of RAM that Google Colab allow you to use. Because of that, I could not train my networks with larger datasets or more epochs. Perhaps using a better device which has more RAM and more GPU cores will improve the accuracy of the networks. With using a better environment for running codes, deeper and more complex architecture can be used as well as larger dataset. In future works, I might use larger more complex image datasets like ImageNet. Having a deeper network with more convolutional layers is another work that could be done to help improving the autoencoder. Also, it is worth to mention that fully connected layers could be add to this network to see the results of adding fully connected layers to the CNN that has been built before.
 
 # References
-Radford, A., Metz, L., Chintala, S. (2016). Unsupervised Respresentation Learning with Deep Concolutional Generative Adversarial Network,
-	http://arxiv.org/abs/1511.06434 
-Bourlard, H., & Kamp, Y. (1988). Auto-association by multilayer perceptrons and Singular Value Decomposition. Biological Cybernetics, 59(4-5), 291–294. https://doi.org/10.1007/bf00332918 
-Bousmalis, K., Silberman, N., Dohan, D., Erhan, D., & Krishnan, D. (2017). Unsupervised pixel-level domain adaptation with generative Adversarial Networks. 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). https://doi.org/10.1109/cvpr.2017.18 
-Creswell, A., White, T., Dumoulin, V., Arulkumaran, K., Sengupta, B., & Bharath, A. A. (2018). Generative Adversarial Networks: An overview. IEEE Signal Processing Magazine, 35(1), 53–65. https://doi.org/10.1109/msp.2017.2765202 
-Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., Courville, A., & Bengio, Y. (2020). Generative Adversarial Networks. Communications of the ACM, 63(11), 139–144. https://doi.org/10.1145/3422622 
-Kramer, M. A. (1991). Nonlinear principal component analysis using autoassociative Neural Networks. AIChE Journal, 37(2), 233–243. https://doi.org/10.1002/aic.690370209 
-Lopez Pinaya, W. H., Vieira, S., Garcia-Dias, R., & Mechelli, A. (2020). Autoencoders. Machine Learning, 193–208. https://doi.org/10.1016/b978-0-12-815739-8.00011-0 
-Susik, R. (2021). Recurrent autoencoder with sequence-aware encoding. Computational Science – ICCS 2021, 47–57. https://doi.org/10.1007/978-3-030-77964-1_4 
-Tang, T.-W., Kuo, W.-H., Lan, J.-H., Ding, C.-F., Hsu, H., & Young, H.-T. (2020). Anomaly detection neural network with dual auto-encoders gan and its industrial inspection applications. Sensors, 20(12), 3336. https://doi.org/10.3390/s20123336 
-Zhu, J.-Y., Krähenbühl, P., Shechtman, E., & Efros, A. A. (2016). Generative visual manipulation on the natural image manifold. Computer Vision – ECCV 2016, 597–613. https://doi.org/10.1007/978-3-319-46454-1_36   
-Trokhymovych, M., Kosovan, O. (2023). GeoDD: End-to-End Spatial Data 
-De-duplication System. In: Silhavy, R., Silhavy, P., Prokopova, Z. (eds) 
-Data Science and Algorithms in Systems. CoMeSySo 2022. Lecture Notes in 
-Networks and Systems, vol 597. Springer, Cham. 
-https://doi.org/10.1007/978-3-031-21438-7_60
+Radford, A., Metz, L., Chintala, S. (2016). Unsupervised Respresentation Learning with Deep Concolutional Generative Adversarial Network, http://arxiv.org/abs/1511.06434 <br />
+Bourlard, H., & Kamp, Y. (1988). Auto-association by multilayer perceptrons and Singular Value Decomposition. Biological Cybernetics, 59(4-5), 291–294. https://doi.org/10.1007/bf00332918 <br />
+Bousmalis, K., Silberman, N., Dohan, D., Erhan, D., & Krishnan, D. (2017). Unsupervised pixel-level domain adaptation with generative Adversarial Networks. 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). https://doi.org/10.1109/cvpr.2017.18 <br />
+Creswell, A., White, T., Dumoulin, V., Arulkumaran, K., Sengupta, B., & Bharath, A. A. (2018). Generative Adversarial Networks: An overview. IEEE Signal Processing Magazine, 35(1), 53–65. https://doi.org/10.1109/msp.2017.2765202 <br />
+Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., Courville, A., & Bengio, Y. (2020). Generative Adversarial Networks. Communications of the ACM, 63(11), 139–144. https://doi.org/10.1145/3422622 <br />
+Kramer, M. A. (1991). Nonlinear principal component analysis using autoassociative Neural Networks. AIChE Journal, 37(2), 233–243. https://doi.org/10.1002/aic.690370209 <br />
+Lopez Pinaya, W. H., Vieira, S., Garcia-Dias, R., & Mechelli, A. (2020). Autoencoders. Machine Learning, 193–208. https://doi.org/10.1016/b978-0-12-815739-8.00011-0 <br />
+Susik, R. (2021). Recurrent autoencoder with sequence-aware encoding. Computational Science – ICCS 2021, 47–57. https://doi.org/10.1007/978-3-030-77964-1_4 <br />
+Tang, T.-W., Kuo, W.-H., Lan, J.-H., Ding, C.-F., Hsu, H., & Young, H.-T. (2020). Anomaly detection neural network with dual auto-encoders gan and its industrial inspection applications. Sensors, 20(12), 3336. https://doi.org/10.3390/s20123336 <br />
+Zhu, J.-Y., Krähenbühl, P., Shechtman, E., & Efros, A. A. (2016). Generative visual manipulation on the natural image manifold. Computer Vision – ECCV 2016, 597–613. https://doi.org/10.1007/978-3-319-46454-1_36
