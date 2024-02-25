@@ -17,7 +17,7 @@ Where $W_e$ and $b_e$ are related to the encoder part, and $W_d$ and $b_d$ are f
 
 We aim to reconstruct $\bar{x}^i$ to approximate $x^i$. So, the loss function is the sum of the squared difference between $\bar{x}^i$ and $x^i$. <br />
 ```math
-$L(W_e,b_e,W_d,b_d) = ∑ (\bar{x}^i - x^i)^2 = ∑ ( W_d z^i + b_d- x^i)^2 = ∑ ( W_d (W_e x^i+ b_e) + b_d - x^i)^2$ <br />
+$L(W_e,b_e,W_d,b_d) = \sum_{i=1}^m (\bar{x}^i - x^i)^2 = \sum_{i=1}^m ( W_d z^i + b_d- x^i)^2 = \sum_{i=1}^m ( W_d (W_e x^i+ b_e) + b_d - x^i)^2$ <br />
 ```
 Therefore, minimizing this difference is the goal here, which can be done by stochastic gradient descent.
 
@@ -30,7 +30,7 @@ The cost of training is defined by a cost function $V(G,D)$ that depends on both
 ```math
 \min_D ( \⁡min_G ⁡(V(G,D)) )
 ```
-where $V(G,D) = E_[P_input (x)] log⁡ D(x) + E_{P_model (x)} log⁡(1-D(x))$. <br />
+where $V(G,D) = E_[P input (x)] log⁡ D(x) + E_{P_model (x)} log⁡(1-D(x))$. <br />
 
 ```math
 \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
