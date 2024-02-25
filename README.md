@@ -25,6 +25,10 @@ The cost of training is defined by a cost function $V(G,D)$ that depends on both
 $max_D ⁡min_G⁡ [V(G,D)]$ <br />
 where $V(G,D) = E_[P_input (x)] log⁡ D(x) + E_{P_model (x)} log⁡(1-D(x))$. <br />
 
+```math
+\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+```
+
 Here $E_{P_input (x)}$ is the expectation over the input distribution, E_(P_model (x) ) is the expectation over the autoencoder’s output distribution, and log⁡〖D(x)  〗is the log-likelihood of the discriminator. In the training process, the parameters of one network is frozen while the other network’s parameters are being updated (Creswell et al., 2018).
 
 Goodfellow et al.4 showed that for a generator with probability distribution p_model there is a unique optimal discriminator, D^* (x)=  (p_input (x) )/(p_input (x)+p_model (x) ). They also showed that when p_input (x) is equal to p_model (x), the generator is optimal, which then lead them to the optimal discriminator with D^* (x)= 0.5. In other words, the generator is optimal when the discriminator is totally confused between the real samples or the fake ones, which in fact make the discriminator take a 50-50 chance decision.
