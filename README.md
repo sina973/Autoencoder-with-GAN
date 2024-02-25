@@ -28,7 +28,7 @@ The other part is the discriminator. The discriminator takes some examples $x$ a
 Training of GANs consists of evaluating both parameters of the discriminator, which maximizes its accuracy, and also the parameters of the generator that can maximally fool the discriminator (Creswell et al., 2018). <br />
 The cost of training is defined by a cost function $V(G,D)$ that depends on both the generator and the discriminator. Here, I decided to use minimax GAN, which is based on the minimax game. This type of training solves the bellow equation: <br />
 ```math
-\left \max_D \right \⁡min_G ⁡(V(G,D))
+\left \max_D \left \⁡min_G ⁡(V(G,D))
 ```
 where $V(G,D) = E_[P_input (x)] log⁡ D(x) + E_{P_model (x)} log⁡(1-D(x))$. <br />
 
