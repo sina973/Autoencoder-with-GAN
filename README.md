@@ -30,7 +30,7 @@ The cost of training is defined by a cost function $V(G,D)$ that depends on both
 ```math
 \left( \max_D \left(\⁡min_G (V(G,D) \right) \right) 
 ```
-where $V(G,D) = E \left[ P_\left( input \right) (x)\right] log⁡ D(x) + E [P_{model}(x)] log⁡(1-D(x))$. <br />
+where $V(G,D) = E[P_{input}(x)] log⁡ D(x) + E [P_{model}(x)] log⁡(1-D(x))$. <br />
 
 ```math
 \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
