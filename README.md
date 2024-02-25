@@ -12,12 +12,11 @@ $\bar{x}^i = W_d  z^i+ b_d$ <br />
 Where $W_e$ and $b_e$ are related to the encoder part, and $W_d$ and $b_d$ are for the decoder part of the autoencoder. <br />
 
 We aim to reconstruct $\bar{x}^i$ to approximate $x^i$. So, the loss function is the sum of the squared difference between $\bar{x}^i$ and $x^i$. <br />
-$L(W_e,b_e,W_d,b_d) = ∑ (\bar{x}^i - x^i)^2$ <br />
-〖^〗= ∑_(i=1)^m▒( W_d  z^((i))+ b_d- x^( (i) ) )^2 
-〖^〗= ∑_(i=1)^m▒( W_d  (W_e  x^((i))+ b_e)+ b_d- x^( (i) ) )^2 
+$L(W_e,b_e,W_d,b_d) = ∑ (\bar{x}^i - x^i)^2 = ∑ ( W_d z^i + b_d- x^i)^2 = ∑ ( W_d (W_e x^i+ b_e) + b_d - x^i)^2$ <br />
+
 Therefore, minimizing this difference is the goal here, which can be done by stochastic gradient descent.
 
-3.2 The Discriminator: 
+## The Discriminator: 
 A Generative Adversarial Network is made of two neural networks – the generator and the discriminator - which compete with each other in the sense of game theory (Goodfellow et al., 2020). Presume training examples x has an unknown distribution p_input (x). The goal of the generator network is to learn p_model (x) in a way that is as similar to p_input (x) as much as possible. The output of the generator is defined by the generator function G(u;W(G)), where u is the input of the generator and W(G) is a set of learnable parameters of the generator. In this project, the generator is the autoencoder's decoder part.
 The other part is the discriminator. The discriminator takes some examples x as input and decide whether x is real (drawn from the training samples) or fake (output of the generator). The discriminator function is D(x;W(D)) where W(D)) ) is a set of learnable parameters of the discriminator.
 
