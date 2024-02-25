@@ -8,11 +8,11 @@ In this project, I propose a novel model combining Recursive Autoencoder with GA
 ## Autoencoder:  
 Autoencoders first compress the data into a latent representation with lower dimensions. Then, it tries to reproduce the input data. Suppose we have a set of input data points ${x^1,x^2,…,x^m}$ each with many dimensions. The goal of the autoencoder is to map the input to some latent representation ${z^1,z^2,…,z^m}$ which has lower dimensionality than x, and also x can be reconstructed from it (we name the reconstructed data $\bar{x}$.) In order to talk about mapping more systematically, I propose z and $\bar{x}$ in the following way:<br />
 $z^i= W_e  x^i+ b_e$ <br />
-$\bar{x}^i = W_d  z^i+ b_d$
-Where $W_e$ and $b_e$ are related to the encoder part, and $W_d$ and $b_d$ are for the decoder part of the autoencoder.
+$\bar{x}^i = W_d  z^i+ b_d$ <br />
+Where $W_e$ and $b_e$ are related to the encoder part, and $W_d$ and $b_d$ are for the decoder part of the autoencoder. <br />
 
-We aim to reconstruct $\bar{x}^i$ to approximate $x^i$. So, the loss function is the sum of the squared difference between $\bar{x}^i$ and $x^i$. 
-$L(W_e,b_e,W_d,b_d) = ∑_(i=1)^m▒( x ̅^( (i) )- x^( (i) ) )^2$
+We aim to reconstruct $\bar{x}^i$ to approximate $x^i$. So, the loss function is the sum of the squared difference between $\bar{x}^i$ and $x^i$. <br />
+$L(W_e,b_e,W_d,b_d) = ∑ (\bar{x}^i - x^i)^2$ <br />
 〖^〗= ∑_(i=1)^m▒( W_d  z^((i))+ b_d- x^( (i) ) )^2 
 〖^〗= ∑_(i=1)^m▒( W_d  (W_e  x^((i))+ b_e)+ b_d- x^( (i) ) )^2 
 Therefore, minimizing this difference is the goal here, which can be done by stochastic gradient descent.
