@@ -28,12 +28,12 @@ The other part is the discriminator. The discriminator takes some examples $x$ a
 Training of GANs consists of evaluating both parameters of the discriminator, which maximizes its accuracy, and also the parameters of the generator that can maximally fool the discriminator (Creswell et al., 2018). <br />
 The cost of training is defined by a cost function $V(G,D)$ that depends on both the generator and the discriminator. Here, I decided to use minimax GAN, which is based on the minimax game. This type of training solves the bellow equation: <br />
 ```math
-\left( \max_D \right( \⁡min_G ⁡(V(G,D))
+\left \max_D \right \left( \⁡min_G ⁡(V(G,D) \right)
 ```
 where $V(G,D) = E_[P_input (x)] log⁡ D(x) + E_{P_model (x)} log⁡(1-D(x))$. <br />
 
 ```math
-\left( \sum_{k=1}^n a_k b_k \left)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
 ```
 
 Here $E_{P_input (x)}$ is the expectation over the input distribution, E_(P_model (x) ) is the expectation over the autoencoder’s output distribution, and log⁡〖D(x)  〗is the log-likelihood of the discriminator. In the training process, the parameters of one network is frozen while the other network’s parameters are being updated (Creswell et al., 2018).
