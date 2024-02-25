@@ -1,5 +1,5 @@
 # Autoencoder-with-GAN
-Design and build a GAN, Combine Recurrent Autoencoder with Generative Adversarial Network
+Design and build a GAN, Combine Recurrent Autoencoder with Generative Adversarial Network.
 
 # Introduction
 In this project, I propose a novel model combining Recursive Autoencoder with GAN. I created two neural networks, the encoder and decoder of the autoencoder part, and one additional network that works as a binary classifier for the discriminator. In this way, the Autoencoder and the discriminator compete with each other in the game theory manner in order to improve the efficiency and accuracy of reconstructing input in the autoencoder. Furthermore, the output of the Autoencoder will be entered into the system as an input of the Autoencoder. My goal here is to fool the discriminator by a 50 percent chance for all recursive steps and update both the Autoencoder and discriminator’s parameters with respect to the competition between them.
@@ -7,8 +7,10 @@ In this project, I propose a novel model combining Recursive Autoencoder with GA
 # Methodology
 ## Autoencoder:  
 Autoencoders first compress the data into a latent representation with lower dimensions. Then, it tries to reproduce the input data. Suppose we have a set of input data points ${x^1,x^2,…,x^m}$ each with many dimensions. The goal of the autoencoder is to map the input to some latent representation ${z^1,z^2,…,z^m}$ which has lower dimensionality than x, and also x can be reconstructed from it (we name the reconstructed data $\bar{x}$.) In order to talk about mapping more systematically, I propose z and $\bar{x}$ in the following way:<br />
-$z^i= W_e  x^i+ b_e$ <br />
-$\bar{x}^i = W_d  z^i+ b_d$ <br />
+```math
+z^i= W_e  x^i+ b_e <br />
+\bar{x}^i = W_d  z^i+ b_d <br />
+```
 Where $W_e$ and $b_e$ are related to the encoder part, and $W_d$ and $b_d$ are for the decoder part of the autoencoder. <br />
 
 We aim to reconstruct $\bar{x}^i$ to approximate $x^i$. So, the loss function is the sum of the squared difference between $\bar{x}^i$ and $x^i$. <br />
