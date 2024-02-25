@@ -6,8 +6,8 @@ In this project, I propose a novel model combining Recursive Autoencoder with GA
 
 # Methodology
 ## Autoencoder:  
-Autoencoders first compress the data into a latent representation with lower dimensions. Then, it tries to reproduce the input data. Suppose we have a set of input data points {x^((1)),x^((2)),…,x^((m)) } each with many dimensions. The goal of the autoencoder is to map the input to some latent representation {z^((1)),z^((2)),…,z^((m)) } which have lower dimensionality than x, and also x can be reconstructed from it (we name the reconstructed data x ̅). In order to talk about mapping more systematically, I propose z and x ̅ in the following way:
-$ z^(i)= W_e  x^(i)+ b_e $
+Autoencoders first compress the data into a latent representation with lower dimensions. Then, it tries to reproduce the input data. Suppose we have a set of input data points $ {x^(1),x^(2),…,x^(m)} $ each with many dimensions. The goal of the autoencoder is to map the input to some latent representation {z^((1)),z^((2)),…,z^((m)) } which have lower dimensionality than x, and also x can be reconstructed from it (we name the reconstructed data x ̅). In order to talk about mapping more systematically, I propose z and x ̅ in the following way:
+$' z^(i)= W_e  x^(i)+ b_e '$
 $ \bar{x^(I) = W_d  z^(i)+ b_d $
 Where W_e and b_e are related to the encoder part, and W_d and b_d are for the decoder part of the autoencoder.
 
