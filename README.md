@@ -8,14 +8,17 @@ In this project, I propose a novel model combining Recursive Autoencoder with GA
 ## Autoencoder:  
 Autoencoders first compress the data into a latent representation with lower dimensions. Then, it tries to reproduce the input data. Suppose we have a set of input data points ${x^1,x^2,…,x^m}$ each with many dimensions. The goal of the autoencoder is to map the input to some latent representation ${z^1,z^2,…,z^m}$ which has lower dimensionality than x, and also x can be reconstructed from it (we name the reconstructed data $\bar{x}$.) In order to talk about mapping more systematically, I propose z and $\bar{x}$ in the following way:<br />
 ```math
-z^i= W_e  x^i+ b_e <br />
-\bar{x}^i = W_d  z^i+ b_d <br />
+z^i= W_e  x^i+ b_e
+```
+```math
+\bar{x}^i = W_d  z^i+ b_d
 ```
 Where $W_e$ and $b_e$ are related to the encoder part, and $W_d$ and $b_d$ are for the decoder part of the autoencoder. <br />
 
 We aim to reconstruct $\bar{x}^i$ to approximate $x^i$. So, the loss function is the sum of the squared difference between $\bar{x}^i$ and $x^i$. <br />
+```math
 $L(W_e,b_e,W_d,b_d) = ∑ (\bar{x}^i - x^i)^2 = ∑ ( W_d z^i + b_d- x^i)^2 = ∑ ( W_d (W_e x^i+ b_e) + b_d - x^i)^2$ <br />
-
+```
 Therefore, minimizing this difference is the goal here, which can be done by stochastic gradient descent.
 
 ## The Discriminator: 
@@ -24,7 +27,9 @@ The other part is the discriminator. The discriminator takes some examples $x$ a
 
 Training of GANs consists of evaluating both parameters of the discriminator, which maximizes its accuracy, and also the parameters of the generator that can maximally fool the discriminator (Creswell et al., 2018). <br />
 The cost of training is defined by a cost function $V(G,D)$ that depends on both the generator and the discriminator. Here, I decided to use minimax GAN, which is based on the minimax game. This type of training solves the bellow equation: <br />
+```math
 $max_D ⁡min_G⁡ [V(G,D)]$ <br />
+```
 where $V(G,D) = E_[P_input (x)] log⁡ D(x) + E_{P_model (x)} log⁡(1-D(x))$. <br />
 
 ```math
