@@ -28,17 +28,15 @@ The other part is the discriminator. The discriminator takes some examples $x$ a
 Training of GANs consists of evaluating both parameters of the discriminator, which maximizes its accuracy, and also the parameters of the generator that can maximally fool the discriminator (Creswell et al., 2018). <br />
 The cost of training is defined by a cost function $V(G,D)$ that depends on both the generator and the discriminator. Here, I decided to use minimax GAN, which is based on the minimax game. This type of training solves the bellow equation: <br />
 ```math
-\left( \max_D \left(\⁡min_G (V(G,D) \right) \right) 
+\left( \max_D \left(\⁡min_G (V(G,D) \right) \right)
+a = \dfrac{a}{b}
 ```
-where $V(G,D) = E[P_{input}(x)] log⁡ D(x) + E [P_{model}(x)] log⁡(1-D(x))$. <br />
+where $V(G,D) = E[P_{input}(x)] log⁡ D(x) + E[P_{model}(x)] log⁡(1-D(x))$. <br />
 
-```math
-\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
-```
 
-Here $E_{P_input (x)}$ is the expectation over the input distribution, E_(P_model (x) ) is the expectation over the autoencoder’s output distribution, and log⁡〖D(x)  〗is the log-likelihood of the discriminator. In the training process, the parameters of one network is frozen while the other network’s parameters are being updated (Creswell et al., 2018).
+Here $E[P_{input}(x)]$ is the expectation over the input distribution, $E[P_{model}(x)]$ is the expectation over the autoencoder’s output distribution, and $log(D(x))$ is the log-likelihood of the discriminator. In the training process, the parameters of one network is frozen while the other network’s parameters are being updated (Creswell et al., 2018). <br />
 
-Goodfellow et al.4 showed that for a generator with probability distribution p_model there is a unique optimal discriminator, D^* (x)=  (p_input (x) )/(p_input (x)+p_model (x) ). They also showed that when p_input (x) is equal to p_model (x), the generator is optimal, which then lead them to the optimal discriminator with D^* (x)= 0.5. In other words, the generator is optimal when the discriminator is totally confused between the real samples or the fake ones, which in fact make the discriminator take a 50-50 chance decision.
+Goodfellow et al.4 showed that for a generator with probability distribution $P_{model}$ there is a unique optimal discriminator, D^* (x)=  (p_input (x) )/(p_input (x)+p_model (x) ). They also showed that when p_input (x) is equal to p_model (x), the generator is optimal, which then lead them to the optimal discriminator with D^* (x)= 0.5. In other words, the generator is optimal when the discriminator is totally confused between the real samples or the fake ones, which in fact make the discriminator take a 50-50 chance decision.
 
 3.3 Combining Autoencoder with Discriminator: 
 In this project, I combined autoencoder with GAN in the way that we have the normal autoencoder with a discriminator which defines the accuracy of our resampling (i.e., recreate the input via autoencoder). Unlike the traditional architecture in GAN, in which the generator competes with the discriminator, the whole autoencoder competes with the discriminator in this case. In this matter, after training networks individually, one of the two networks – The autoencoder or the discriminator – is frozen and the other network’s parameters is being updated. So, if the discriminator can recognize fake data with more than 50% probability, the discriminator’s parameters will be fixed and in order to improve autoencoder, only the autoencoder parameters will change.
