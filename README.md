@@ -75,10 +75,16 @@ For the MNIST dataset, I used Mean Squared Error for the loss function. The loss
 <img src="Images/MNIST%20-%20AE%20-%202.png">
 <img src="Images/AE%20-%20attempt4%20-%20pic1.png">
 
-For the CIFAR10 dataset, I used Binary Cross Entropy for the loss function. The loss of the autoencoder after training it with 10000 images and 200 epochs and testing with 2000 images was 0.553. The reconstructed images had a little shape, and the color faded a little bit as a result of the compressive nature of the autoencoder. The reconstructed images for the last epoch and diagram of the training loss and validation loss can be found in Figure 4 and Figure 7, respectively.
+For the CIFAR10 dataset, I used Binary Cross Entropy for the loss function. The loss of the autoencoder after training it with 10000 images and 200 epochs and testing with 2000 images was 0.553. The reconstructed images had a little shape, and the color faded a little bit as a result of the compressive nature of the autoencoder. The reconstructed images for the last epoch and diagram of the training loss and validation loss can be found in the figures below, respectively.
+
+<img src="Images/MNIST%20-%20AE%20-%201.png">
+<img src="Images/AE%20-%20attempt4%20-%20pic2.png">
 
 ## Recursive Autoencoder
-For the recursive part, I wanted to observe how this way of training the autoencoder will affect its performance it. I used BCE for the output of the autoencoder without any recursive steps. After training the recursive autoencoder with 10000 images and 150 epochs, the loss was 0.559. The reconstructed images have better shapes than the autoencoder without any recursive steps, but the color of the images faded a little bit. The diagram of the training loss validation loss and reconstructed images for the last epoch can be found in Figure 8 and Figure 9, respectively.
+For the recursive part, I wanted to observe how this way of training the autoencoder will affect its performance it. I used BCE for the output of the autoencoder without any recursive steps. After training the recursive autoencoder with 10000 images and 150 epochs, the loss was 0.559. The reconstructed images have better shapes than the autoencoder without any recursive steps, but the color of the images faded a little bit. The diagram of the training loss validation loss and reconstructed images for the last epoch can be found in the figures below, respectively.
+
+<img src="Images/MNIST%20-%20AE%20-%201.png">
+<img src="Images/AE%20-%20attempt4%20-%20pic2.png">
 
 ## Autoencoder with GAN
 For the last part, I implemented it with both the MNIST dataset and the CIFAR10 dataset. For the MNIST dataset, I used BCE for the loss function of the discriminator and MSE for the autoencoder. The loss of the autoencoder after training it with 7000 images and 200 epochs and validating it with 2000 images was 0.509. The reconstructed images got a little blurry, and the loss was higher than the regular autoencoder with the MNIST dataset. It may be because of the perfect discriminator I had for the MNIST dataset. The discriminator loss here was 0.02, and the autoencoder could not fool the discriminator. This may be because the MNIST dataset images are not complex. The reconstructed images for the last epoch can be found in Figure 11. <br />
