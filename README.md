@@ -21,6 +21,8 @@ $L(W_e,b_e,W_d,b_d) = \sum_{i=1}^m (\bar{x}^i - x^i)^2 = \sum_{i=1}^m ( W_d z^i 
 ```
 Therefore, minimizing this difference is the goal here, which can be done by stochastic gradient descent.
 
+<img src="Images/FIG%201.png">
+
 ## The Discriminator: 
 A Generative Adversarial Network is made of two neural networks – the generator and the discriminator - which compete with each other in the sense of game theory (Goodfellow et al., 2020). Presume training examples $x$ has an unknown distribution $p_input(x)$. The goal of the generator network is to learn $p_model(x)$ in a way that is as similar to $p_input(x)$ as much as possible. The output of the generator is defined by the generator function $G(u;W(G))$, where u is the input of the generator and $W(G)$ is a set of learnable parameters of the generator. In this project, the generator is the autoencoder's decoder part. <br />
 The other part is the discriminator. The discriminator takes some examples $x$ as input and decides whether $x$ is real (drawn from the training samples) or fake (output of the generator). The discriminator function is $D(x;W(D))$ where $W(D)$ is a set of learnable parameters of the discriminator. <br />
@@ -37,12 +39,16 @@ Here $E[P_{input}(x)]$ is the expectation over the input distribution, $E[P_{mod
 
 Goodfellow et al.4 showed that for a generator with probability distribution $P_{model}$ there is a unique optimal discriminator, $D'(x) = \dfrac{P_{input}(x)}{P_{input}(x) + P_{model}(x)}$. They also showed that when $P_{input}(x)$ is equal to $P_{model}(x)$, the generator is optimal, which then leads them to the optimal discriminator with $D^*(x) = 0.5$. In other words, the generator is optimal when the discriminator is totally confused between the real samples and the fake ones, which, in fact, makes the discriminator make a 50-50 chance decision.
 
+<img src="Images/FIG%202.png">
+
 ## Combining Autoencoder with Discriminator: 
 In this project, I combined autoencoder with GAN in the way that we have the normal autoencoder with a discriminator, which defines the accuracy of our resampling (i.e., recreating the input via autoencoder). Unlike the traditional architecture in GAN, in which the generator competes with the discriminator, the whole autoencoder competes with the discriminator in this case. In this matter, after training networks individually, one of the two networks – The autoencoder or the discriminator – is frozen, and the other network’s parameters are updated. So, if the discriminator can recognize fake data with more than 50% probability, the discriminator’s parameters will be fixed, and in order to improve the autoencoder, only the autoencoder parameters will change. <br />
 
 As an extension to Autoencoders, researchers introduced a “Recurrent autoencoder” (Susik, 2021). In the Recurrent Autoencoders the generated output of the decoder will be the input of the autoencoder, and the final output of the autoencoder after k recursive process will be x'^k. In regard to this change, the loss function will be changed to $L(W_e,b_e,W_d,b_d) =(x'^k - x^2)$ instead of $(x'- x)^2$. The goal here is to minimize the loss function by updating the encoder and decoder’s parameters. <br />
 
 In this project, I proposed a novel model combining Recurrent Autoencoder with GAN in the way they both compete with each other in order to improve the efficiency and accuracy of reconstructing input in autoencoders. In this matter, all the outputs from decoder (from first output, $x'^1$ to the last recursive output $x'^k$ will be the input of the discriminator to decide whether it is fake or real (Figure 3). My goal here is to fool the discriminator by a 50 percent chance for all recursive steps and update both the Autoencoder and discriminator’s parameters in respect of a competition between the Recursive Autoencoder and the discriminator. <br />
+
+<img src="Images/FIG%203.png">
 
 # Implementation
 
